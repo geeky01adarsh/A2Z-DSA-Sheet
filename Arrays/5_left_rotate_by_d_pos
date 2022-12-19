@@ -1,0 +1,16 @@
+// brute force- use extra space.
+
+// better:- use sorting by 1 pos k times
+
+// otimized:- using STL : three traverssal
+void leftRotate(int arr[], int k, int n)
+{
+    k = k % n;
+    reverse(arr, arr + n);
+    reverse(arr, arr + (n - k));
+    reverse(arr + (n - k), arr + n);
+}
+
+
+
+
