@@ -1,0 +1,18 @@
+int NumberofElementsInIntersection(int a[], int b[], int n, int m)
+{
+    int i = 0, j = 0;
+    int ans = 0;
+    unordered_set<int> s;
+    while (i < n)
+        s.insert(a[i++]);
+    while (j < m)
+    {
+        if (s.count(b[j]))
+        {
+            s.erase(b[j]);
+            ans++;
+        }
+        j++;
+    }
+    return ans;
+}
