@@ -1,0 +1,20 @@
+// brute force
+// sorting
+
+// better
+// space :- O(N)
+// timr:- O(N)
+int missingNumber(int arr[], int n)
+{
+    vector<bool> chk(n+1,0);
+    for(int i=0; i<n-1; i++)
+        chk[arr[i]]=1;
+    
+    for(int i=1; i<=n; i++) if(!chk[i]) return i;
+}
+
+// optimized
+int missingNumber(int arr[], int n)
+{
+    return (n * (n + 1)) / 2 - accumulate(arr, arr + n - 1, 0);
+}
