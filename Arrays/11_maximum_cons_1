@@ -1,0 +1,56 @@
+// brute force:- O(N^2)
+
+int findZeroes(int arr[], int n, int m)
+{
+    int ans = 0;
+    for (int i = 0; i < n;)
+    {
+        int temp = m;
+        int count = 1;
+        int break_point = -1;
+        if (!arr[i])
+        {
+            temp--;
+            break_point = i;
+        }
+        for (int j = i + 1; j < n; j++)
+        {
+            if (!arr[j])
+            {
+                if (!temp)
+                    break;
+                temp--;
+                if (break_point == -1)
+                    break_point = j;
+            }
+            count++;
+        }
+        i = break_point + 1;
+        ans = max(count, ans);
+        if (break_point == -1)
+            return ans;
+    }
+
+    return ans;
+}
+
+// optimized solution:- O(N)
+// use sliding window technique
+// logic :- maintain two pointers, one will store all the processed elements
+// other will take care over the elements which must be processed
+// increment values until linearily until one in a loop until non-zeroes no. are there
+// if the value of m goes negative the increment the l pointer until m becomes 0
+int findZeroes(int arr[], int n, int m)
+{
+    int l = 0, r = 0, ans = 0;
+    while (r < n)
+    {
+        if (arr[r++] == 0)
+            m--;
+        while (m < 0)
+            if (arr[l++] == 0)
+                m++;
+        ans = max(ans, r - l);
+    }
+    return ans;
+}

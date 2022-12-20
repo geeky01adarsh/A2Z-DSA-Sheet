@@ -1,0 +1,10 @@
+// xor of two sum no is zero, lone will stand slone.    
+int singleNumber(vector<int> &nums)
+{
+    int ans = 0;
+    for (auto i : nums)
+    {
+        ans = ans ^ i;
+    }
+    return ans;
+}
