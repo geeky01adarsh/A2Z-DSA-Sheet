@@ -1,0 +1,21 @@
+// brute force:- sort
+// brute force:- count and replace
+
+// optimized:- swap with first and last index iteratively, incremeting/decrementing their value
+void sort012(int a[], int n)
+{
+    int i = 0, j = 0, k = n - 1;
+    while (j <= k)
+    {
+        if (a[j] == 0 && i < j)
+        {
+            swap(a[j], a[i++]);
+        }
+        else if (a[j] == 2 && j < k)
+        {
+            swap(a[j], a[k--]);
+        }
+        else
+            j++;
+    }
+}

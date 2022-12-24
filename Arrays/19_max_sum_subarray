@@ -1,0 +1,20 @@
+// max sum subarray :- Kadane Algorithm
+long long maxSubarraySum(int arr[], int n)
+{
+    int msf = INT_MIN, meh = 0, start = 0, end = 0, s = 0;
+    for (int i = 0; i < n; i++)
+    {
+        meh += arr[i];
+        if (meh > msf)
+        {
+            msf = meh;
+            end = i;
+        }
+        if (meh < 0)
+        {
+            meh = 0;
+            s = i + 1;
+        }
+    }
+    return msf;
+}

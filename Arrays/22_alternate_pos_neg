@@ -1,0 +1,57 @@
+// gfg
+void rearrange(int arr[], int n)
+{
+    vector<int> pos, neg;
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] < 0)
+            neg.push_back(arr[i]);
+        else
+            pos.push_back(arr[i]);
+    }
+    n = pos.size();
+    int m = neg.size();
+    int i = 0, j = 0, k = 0;
+    while (i < n && j < m)
+    {
+        if (k % 2 == 0)
+        {
+            arr[k++] = pos[i++];
+        }
+        else
+        {
+            arr[k++] = neg[j++];
+        }
+    }
+    while (i < n)
+        arr[k++] = pos[i++];
+    while (j < m)
+        arr[k++] = neg[j++];
+}
+
+// leetcode
+
+class Solution
+{
+public:
+    vector<int> rearrangeArray(vector<int> &nums)
+    {
+        int sz = nums.size();
+        vector<int> ans(sz);
+        int i = 0, p = 0, n = 1;
+        while (i < sz)
+        {
+            if (nums[i] < 0)
+            {
+                ans[n] = nums[i++];
+                n += 2;
+            }
+            else
+            {
+                ans[p] = nums[i++];
+                p += 2;
+            }
+        }
+        return ans;
+    }
+};

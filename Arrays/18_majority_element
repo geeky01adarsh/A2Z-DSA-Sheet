@@ -1,0 +1,25 @@
+// maurice's voting algorithm
+// if any element is more that n/2 times then the iterative count will never be 0
+int majorityElement(int arr[], int n)
+{
+    int res = 0, count = 1;
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[res] == arr[i])
+            count++;
+        else
+            count--;
+        if (count == 0)
+        {
+            res = i;
+            count++;
+        }
+    }
+    count = 0;
+    for (int i = 0; i < n; i++)
+        if (arr[i] == arr[res])
+            count++;
+    if (count <= n / 2)
+        return -1;
+    return arr[res];
+}
