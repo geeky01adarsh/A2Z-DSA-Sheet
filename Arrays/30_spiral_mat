@@ -1,0 +1,48 @@
+int findK(vector<vector<int>> &arr, int n, int m, int k)
+{
+    // Your code goes here
+    int c = n * m;
+    int rs = 0, re = n - 1;
+    int cs = 0, ce = m - 1;
+    k--;
+    while (rs <= re && cs <= ce)
+    {
+        // traversing the first row
+        for (int i = cs; i <= ce; i++)
+        {
+            // cout<<arr[rs][i]<<" ";
+            if (k == 0)
+                return arr[rs][i];
+            k--;
+        }
+        rs++;
+        // traversing the last col
+        for (int i = rs; i <= re; i++)
+        {
+            // cout<<arr[i][ce]<<" ";
+            if (k == 0)
+                return arr[i][ce];
+            k--;
+        }
+        ce--;
+        // traversing the last row
+        for (int i = ce; i >= cs; i--)
+        {
+            // cout<<arr[re][i]<<" ";
+            if (k == 0)
+                return arr[re][i];
+            k--;
+        }
+        re--;
+        // traversing the fist col
+        for (int i = re; i >= rs; i--)
+        {
+            // cout<<arr[i][cs]<<" ";
+            if (k == 0)
+                return arr[i][cs];
+            k--;
+        }
+        cs++;
+    }
+    return -1;
+}
