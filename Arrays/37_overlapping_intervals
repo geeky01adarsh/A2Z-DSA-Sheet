@@ -1,0 +1,17 @@
+vector<vector<int>> overlappedInterval(vector<vector<int>> &intervals)
+{
+    vector<vector<int>> ans;
+    sort(intervals.begin(), intervals.end());
+    for (auto i : intervals)
+    {
+        if (ans.size() && ans.back()[1] >= i[0])
+        {
+            ans.back()[1] = max(ans.back()[1], i[1]);
+        }
+        else
+        {
+            ans.push_back(i);
+        }
+    }
+    return ans;
+}

@@ -1,0 +1,17 @@
+vector<ll> nthRowOfPascalTriangle(int n)
+{
+    int mod = 1e9 + 7;
+    vector<vector<ll>> helper(n);
+    helper[0].push_back(1);
+    for (ll i = 1; i < n; i++)
+    {
+        helper[i].push_back(1);
+        for (ll j = 1; j < i; j++)
+        {
+            ll sum = (helper[i - 1][j - 1] + helper[i - 1][j]) % mod;
+            helper[i].push_back(sum);
+        }
+        helper[i].push_back(1);
+    }
+    return helper[n - 1];
+}
