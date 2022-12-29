@@ -1,0 +1,37 @@
+// binary search
+pair<int, int> getFloorAndCeil(int arr[], int n, int x) {
+    int ceil_no = -1, floor_no = -1;
+    int low=0, high =n-1;
+    sort(arr, arr+n);
+    while(low<=high){
+        int mid=(low+high)/2;
+        if(arr[mid]==x)
+            return {arr[mid], arr[mid]};
+        
+        if(arr[mid]>x)
+            floor_no = arr[mid], high =mid-1;
+        
+        else
+            ceil_no = arr[mid], low=mid+1;
+    }
+    return {ceil_no,floor_no};
+}
+
+// normal traversal
+pair<int, int> getFloorAndCeil(int arr[], int n, int x)
+{
+    int ceil_no = -1, floor_no = -1;
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] == x)
+            return {arr[i], arr[i]};
+        if (arr[i] > x)
+        {
+            if (floor_no == -1 || floor_no > arr[i])
+                floor_no = arr[i];
+        }
+        else if (ceil_no == -1 || ceil_no < arr[i])
+            ceil_no = arr[i];
+    }
+    return {ceil_no, floor_no};
+}
