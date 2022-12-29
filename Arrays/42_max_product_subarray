@@ -1,0 +1,67 @@
+// brute force:- O(n)-->two traversals
+long long maxProduct(vector<int> arr, int n)
+{
+    long long ans = INT_MIN, temp = INT_MIN;
+    for (int i = 0; i < n; i++)
+    {
+        if (temp == INT_MIN)
+        {
+            if (!arr[i])
+                ans = max(ans, (long long)0);
+            else
+                temp = arr[i];
+        }
+        else
+        {
+            if (arr[i] == 0)
+            {
+                ans = max(ans, (long long)0);
+                temp = INT_MIN;
+            }
+            else
+            {
+                temp *= arr[i];
+            }
+        }
+        ans = max(ans, temp);
+    }
+    temp = INT_MIN;
+    for (int i = n - 1; i >= 0; i--)
+    {
+        if (temp == INT_MIN)
+        {
+            temp = arr[i];
+        }
+        else
+        {
+            if (arr[i] == 0)
+            {
+                ans = max(ans, (long long)0);
+                temp = INT_MIN;
+            }
+            else
+            {
+                temp *= arr[i];
+            }
+        }
+        ans = max(ans, temp);
+    }
+
+    return ans;
+}
+
+
+// optimized-->Kadane's Algo
+long long maxProduct(vector<int> arr, int n)
+{
+    long long ans = arr[0], prod1 = arr[0], prod2 = arr[0];
+    for (int i = 1; i < n; i++)
+    {
+        if (arr[i] < 0)
+            swap(prod1, prod2);
+        prod1 = max((long long)arr[i], prod1 * arr[i]);
+        prod2 = min((long long)arr[i], prod2 * arr[i]);
+        ans = max(ans, prod1);
+    }
+    return ans;
+}
